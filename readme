@@ -1,0 +1,50 @@
+<API_HOST> http://172.16.254.140:3000
+
+<LOGIN> user14
+
+<PASSWORD> 14
+
+<TOKEN> mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=
+
+<ID> 60598e508d8e2a0007014fd2
+
+<FULL_PATH_TO_FILE> /home/student/file.txt
+
+<TITLE_VAL> Simple file
+
+<BODY_VAL> This is a simple file
+
+Authentification 
+curl -v -X POST 'http://172.16.254.140:3000/api/login' -H 'Content-Type: application/json' -d '{"login":"user14","password":"14"}'
+
+Registration
+curl -v -X POST 'http://172.16.254.140:3000/api/signup' -H 'Content-Type: application/json' -d '{"login":"user14","password":"14"}'
+
+Exit from system
+curl -v -X GET -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/logout/user14'
+
+Drop account
+curl -v -X DELETE -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/deleteaccount/user14'
+
+
+
+Show list of downloads
+curl -v -X GET -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/uploads'
+
+[
+    {"title":"Simple file","_id":"60599ab18d8e2a0007015010","userId":"6059994c8d8e2a0007014ff3","body":"This is a simple file","__v":0},
+    {"title":"Odt file","_id":"60599afc8d8e2a0007015015","userId":"6059994c8d8e2a0007014ff3","body":"Second file on odt format","__v":0}
+]
+
+Create new download
+curl -v -X POST 'http://172.16.254.140:3000/api/upload' -H 'Content-Type:multipart/form-data' -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' -F 'file=@/home/student/file.txt' -F 'title=Simple file' -F 'body=This is a simple file'
+
+Show the current download
+curl -v -X GET -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/upload/6059944d8d8e2a0007014fe6'
+
+Download the current file
+curl -v -X GET -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/download/605996178d8e2a0007014feb'
+curl -v -X GET -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/download/605996178d8e2a0007014feb' --output /home/student/Рабочий\ стол/fileTxt.txt
+
+Drop all the files
+curl -v -X DELETE -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/upload/6059944d8d8e2a0007014fe6'
