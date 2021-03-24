@@ -48,3 +48,7 @@ curl -v -X GET -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://1
 
 Drop all the files
 curl -v -X DELETE -H 'token:mpuIbDRrpRZveEShg3lSD2VrAJaxCaavho40aG4c1GE=' 'http://172.16.254.140:3000/api/upload/6059944d8d8e2a0007014fe6'
+
+
+
+CURL: 
